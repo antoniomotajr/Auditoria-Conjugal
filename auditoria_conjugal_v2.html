@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#160b16" />
+  <title>ISO-Amor 9001 — Auditoria Conjugal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #120912;
+      --panel: rgba(29, 16, 30, .82);
+      --panel-strong: rgba(36, 18, 37, .96);
+      --line: rgba(255, 255, 255, .09);
+      --text: #fff7fb;
+      --muted: #c9b8c7;
+      --rose: #fb7185;
+      --pink: #ec4899;
+      --fuchsia: #d946ef;
+      --amber: #f59e0b;
+      --green: #34d399;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Inter", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 15% 10%, rgba(236,72,153,.22), transparent 32%),
+        radial-gradient(circle at 90% 10%, rgba(217,70,239,.16), transparent 28%),
+        radial-gradient(circle at 50% 85%, rgba(245,158,11,.08), transparent 32%),
+        linear-gradient(145deg, #0d070d 0%, #170a16 46%, #0d070d 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, .brand-font { font-family: "Outfit", sans-serif; }
+
+    .noise::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      opacity: .025;
+      pointer-events: none;
+      z-index: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");
+    }
+
+    .glass {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      box-shadow: 0 24px 90px rgba(0,0,0,.42);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    .glow-border { position: relative; isolation: isolate; }
+    .glow-border::before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(125deg, rgba(251,113,133,.75), rgba(217,70,239,.38), rgba(245,158,11,.25));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .hero-orb {
+      position: absolute;
+      border-radius: 999px;
+      filter: blur(55px);
+      opacity: .22;
+      pointer-events: none;
+      animation: floatOrb 9s ease-in-out infinite alternate;
+    }
+
+    @keyframes floatOrb {
+      from { transform: translate3d(0,0,0) scale(1); }
+      to { transform: translate3d(30px,-18px,0) scale(1.12); }
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(236,72,153,.16), 0 18px 55px rgba(236,72,153,.18); }
+      50% { box-shadow: 0 0 0 8px rgba(236,72,153,0), 0 22px 75px rgba(217,70,239,.27); }
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(18px) scale(.99); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    @keyframes pop {
+      0% { transform: scale(.92); opacity: 0; }
+      70% { transform: scale(1.04); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .screen-in { animation: slideUp .38s ease both; }
+    .pop { animation: pop .34s ease both; }
+
+    .cta {
+      background: linear-gradient(100deg, #fb7185 0%, #ec4899 45%, #d946ef 100%);
+      box-shadow: 0 18px 55px rgba(236,72,153,.26);
+      transition: transform .2s ease, filter .2s ease, box-shadow .2s ease;
+    }
+    .cta:hover { transform: translateY(-2px); filter: saturate(1.15) brightness(1.05); box-shadow: 0 24px 70px rgba(236,72,153,.34); }
+    .cta:active { transform: translateY(0) scale(.985); }
+
+    .field {
+      background: rgba(255,255,255,.055);
+      border: 1px solid rgba(255,255,255,.10);
+      color: #fff;
+      transition: border-color .2s, box-shadow .2s, background .2s;
+    }
+    .field:focus {
+      outline: none;
+      border-color: rgba(251,113,133,.75);
+      box-shadow: 0 0 0 4px rgba(251,113,133,.10);
+      background: rgba(255,255,255,.075);
+    }
+    select.field option { color: #1f1320; background: #fff; }
+    .field::placeholder { color: #8f7c8e; }
+
+    .rating-card {
+      background: rgba(255,255,255,.045);
+      border: 1px solid rgba(255,255,255,.09);
+      transition: transform .18s ease, border-color .18s ease, background .18s ease, box-shadow .18s ease;
+    }
+    .rating-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(251,113,133,.36);
+      background: rgba(255,255,255,.065);
+    }
+    .rating-card.selected {
+      border-color: rgba(251,113,133,.92);
+      background: linear-gradient(110deg, rgba(251,113,133,.15), rgba(217,70,239,.10));
+      box-shadow: 0 10px 35px rgba(236,72,153,.13), inset 0 0 0 1px rgba(255,255,255,.035);
+      transform: translateY(-1px);
+    }
+
+    .score-pill {
+      width: 34px; height: 34px;
+      display: inline-grid; place-items: center;
+      border-radius: 999px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.08);
+      font-weight: 800;
+      flex: 0 0 auto;
+    }
+    .selected .score-pill {
+      background: linear-gradient(135deg, #fb7185, #d946ef);
+      border-color: transparent;
+      box-shadow: 0 8px 20px rgba(236,72,153,.28);
+    }
+
+    .progress-track {
+      height: 8px;
+      background: rgba(255,255,255,.07);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, #fb7185, #ec4899, #d946ef, #f59e0b);
+      transition: width .35s ease;
+    }
+
+    .thermo {
+      background: linear-gradient(to top, rgba(52,211,153,.82), rgba(245,158,11,.95) 52%, rgba(251,113,133,.95) 76%, rgba(217,70,239,.98));
+    }
+
+    .result-ring {
+      --score: 0;
+      width: 178px;
+      height: 178px;
+      border-radius: 50%;
+      padding: 13px;
+      background: conic-gradient(#fb7185 calc(var(--score) * 1%), rgba(255,255,255,.08) 0);
+      box-shadow: 0 0 65px rgba(236,72,153,.20);
+      transition: background 1s ease;
+    }
+    .result-ring-inner {
+      width: 100%; height: 100%; border-radius: 50%;
+      background: linear-gradient(145deg, #20101f, #110811);
+      display: grid; place-items: center;
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%; bottom: 24px;
+      transform: translate(-50%, 20px);
+      background: rgba(22,11,22,.95);
+      color: white;
+      border: 1px solid rgba(255,255,255,.12);
+      box-shadow: 0 16px 50px rgba(0,0,0,.4);
+      border-radius: 999px;
+      padding: 11px 16px;
+      font-size: 13px;
+      opacity: 0;
+      pointer-events: none;
+      transition: .25s ease;
+      z-index: 80;
+      max-width: calc(100vw - 32px);
+      text-align: center;
+    }
+    .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+    .spark {
+      position: fixed;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 90;
+      animation: spark .75s ease-out forwards;
+    }
+    @keyframes spark {
+      to { transform: translate(var(--x), var(--y)) scale(.2) rotate(120deg); opacity: 0; }
+    }
+
+    .tiny-grid {
+      background-image:
+        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+
+    @media (max-width: 640px) {
+      .result-ring { width: 148px; height: 148px; }
+      .rating-card:hover { transform: none; }
+      .mobile-sticky { position: sticky; bottom: 0; z-index: 20; padding-top: 12px; background: linear-gradient(180deg, rgba(18,9,18,0), rgba(18,9,18,.94) 24%, rgba(18,9,18,.98)); }
+    }
+
+    @media print {
+      body { background: #fff !important; color: #111 !important; }
+      body * { visibility: hidden !important; }
+      #certificate-box, #certificate-box * { visibility: visible !important; }
+      #certificate-box {
+        position: fixed !important;
+        inset: 24px !important;
+        width: auto !important;
+        max-width: none !important;
+        color: #111 !important;
+        background: #fff !important;
+        border: 2px solid #111 !important;
+        box-shadow: none !important;
+      }
+    }
+  </style>
+</head>
+<body class="noise">
+  <div class="hero-orb w-72 h-72 bg-pink-500 top-[-80px] left-[-100px]"></div>
+  <div class="hero-orb w-80 h-80 bg-fuchsia-500 top-[25%] right-[-150px]" style="animation-delay:-2s"></div>
+
+  <header class="sticky top-0 z-50 border-b border-white/5 bg-[#100810]/80 backdrop-blur-xl">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3.5 flex items-center justify-between gap-4">
+      <div class="flex items-center gap-3 min-w-0">
+        <div class="w-11 h-11 rounded-2xl grid place-items-center text-2xl bg-gradient-to-br from-rose-400/20 to-fuchsia-500/20 border border-white/10 shadow-lg">💍</div>
+        <div class="min-w-0">
+          <h1 class="font-black tracking-tight text-lg sm:text-xl leading-tight truncate">ISO-Amor <span class="text-rose-400">9001</span></h1>
+          <p class="text-[10px] sm:text-xs text-white/45 truncate">Auditoria Conjugal • humor, química e sobrevivência</p>
+        </div>
+      </div>
+
+      <div id="header-status" class="hidden items-center gap-2 px-3 py-2 rounded-full bg-rose-500/10 border border-rose-400/15 text-[11px] text-rose-200 shrink-0">
+        <span class="w-2 h-2 rounded-full bg-rose-400 animate-pulse"></span>
+        <span class="hidden sm:inline">Sessão:</span>
+        <strong id="audit-target-name" class="max-w-[120px] truncate">Amor</strong>
+      </div>
+    </div>
+  </header>
+
+  <main class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-10 min-h-[calc(100vh-150px)]">
+
+    <!-- LOGIN / CONFIG -->
+    <section id="screen-login" class="screen-in">
+      <div class="grid lg:grid-cols-[1.15fr_.85fr] gap-5 lg:gap-7 items-stretch">
+        <article class="glass glow-border rounded-[28px] sm:rounded-[34px] p-5 sm:p-8 lg:p-10 overflow-hidden relative tiny-grid">
+          <div class="absolute -right-8 -top-8 text-[140px] opacity-[.035] rotate-12 select-none">🔥</div>
+
+          <div class="inline-flex items-center gap-2 rounded-full px-3 py-1.5 bg-white/5 border border-white/10 text-[11px] uppercase tracking-[.18em] text-rose-200 mb-5">
+            <span class="w-1.5 h-1.5 rounded-full bg-rose-400"></span>
+            Protocolo confidencial de alta tensão doméstica
+          </div>
+
+          <h2 class="brand-font text-3xl sm:text-5xl lg:text-6xl font-black leading-[.98] tracking-tight max-w-3xl">
+            Descubra a temperatura real do seu <span class="text-transparent bg-clip-text bg-gradient-to-r from-rose-300 via-pink-400 to-fuchsia-400">casamento.</span>
+          </h2>
+
+          <p class="mt-5 text-sm sm:text-base text-white/60 leading-relaxed max-w-2xl">
+            Uma auditoria 100% não científica, perigosamente sincera e feita para casais com senso de humor. Avalie rotina, carinho, parceria e o nível de combustão do edredom.
+          </p>
+
+          <div class="grid sm:grid-cols-3 gap-3 mt-6">
+            <div class="rounded-2xl border border-white/8 bg-white/[.035] p-4">
+              <div class="text-xl mb-1">🌶️</div>
+              <strong class="text-sm">Nível Picante</strong>
+              <p class="text-xs text-white/40 mt-1">Você escolhe o tom da auditoria.</p>
+            </div>
+            <div class="rounded-2xl border border-white/8 bg-white/[.035] p-4">
+              <div class="text-xl mb-1">💘</div>
+              <strong class="text-sm">Química em foco</strong>
+              <p class="text-xs text-white/40 mt-1">Clima, beijo, carinho e sintonia.</p>
+            </div>
+            <div class="rounded-2xl border border-white/8 bg-white/[.035] p-4">
+              <div class="text-xl mb-1">📱</div>
+              <strong class="text-sm">Feito para celular</strong>
+              <p class="text-xs text-white/40 mt-1">Toque rápido, leitura limpa e fluida.</p>
+            </div>
+          </div>
+        </article>
+
+        <aside class="glass rounded-[28px] sm:rounded-[34px] p-5 sm:p-7 lg:p-8 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between gap-4 mb-5">
+              <div>
+                <p class="text-[11px] uppercase tracking-[.18em] text-white/35 font-bold">Configuração</p>
+                <h3 class="brand-font text-2xl font-extrabold mt-1">Painel do Auditor 😏</h3>
+              </div>
+              <div class="text-3xl">📋</div>
+            </div>
+
+            <div class="space-y-4">
+              <label class="block">
+                <span class="block text-[11px] uppercase tracking-wider font-bold text-rose-200/80 mb-2">Nome da pessoa auditada</span>
+                <input id="wife-name" type="text" value="Meu Amor" maxlength="40" class="field w-full px-4 py-3.5 rounded-2xl text-sm font-semibold" placeholder="Ex.: Meu Amor" />
+              </label>
+
+              <label class="block">
+                <span class="block text-[11px] uppercase tracking-wider font-bold text-rose-200/80 mb-2">Clima atual da relação</span>
+                <select id="danger-level" class="field w-full px-4 py-3.5 rounded-2xl text-sm font-semibold">
+                  <option value="1">🟢 Tranquilo — tudo sob controle</option>
+                  <option value="2">🟡 Suspeito — existe tensão no ar</option>
+                  <option value="3">🔴 Perigoso — qualquer palavra será usada contra você</option>
+                </select>
+              </label>
+
+              <label class="block">
+                <span class="block text-[11px] uppercase tracking-wider font-bold text-rose-200/80 mb-2">Temperatura da linguagem</span>
+                <select id="spice-level" class="field w-full px-4 py-3.5 rounded-2xl text-sm font-semibold">
+                  <option value="soft">💗 Suave — romântico com uma provocação</option>
+                  <option value="hot" selected>🌶️ Picante — humor + faísca</option>
+                  <option value="extra">🔥 Sem freio — mais atrevido, sem ficar vulgar</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="mt-5 rounded-2xl border border-amber-300/10 bg-amber-300/[.04] p-4 flex gap-3">
+              <div class="text-lg">⚠️</div>
+              <p class="text-xs text-white/48 leading-relaxed">Uso recomendado apenas entre adultos com senso de humor. Resultado não substitui conversa, carinho ou pedido de desculpas estratégico.</p>
+            </div>
+          </div>
+
+          <button onclick="startAudit()" class="cta w-full rounded-2xl py-4 px-5 font-extrabold mt-6 flex items-center justify-center gap-2 text-sm sm:text-base">
+            <span>Iniciar auditoria</span><span>🔥</span>
+          </button>
+        </aside>
+      </div>
+    </section>
+
+    <!-- QUIZ -->
+    <section id="screen-quiz" class="hidden screen-in">
+      <div class="grid lg:grid-cols-[1fr_280px] gap-5 lg:gap-7 items-start">
+        <article class="glass rounded-[28px] sm:rounded-[34px] p-5 sm:p-7 lg:p-9">
+          <div class="flex items-start justify-between gap-4 mb-4">
+            <div class="min-w-0">
+              <div class="flex flex-wrap items-center gap-2 mb-3">
+                <span id="question-counter" class="text-[10px] uppercase tracking-[.18em] font-extrabold text-fuchsia-200 bg-fuchsia-500/10 border border-fuchsia-400/10 px-3 py-1.5 rounded-full">Questão 1 de 7</span>
+                <span id="question-weight" class="hidden text-[10px] uppercase tracking-[.16em] font-extrabold text-rose-200 bg-rose-500/10 px-3 py-1.5 rounded-full">peso 2x</span>
+              </div>
+              <h3 id="question-title" class="brand-font text-2xl sm:text-3xl font-black leading-tight">Pergunta</h3>
+              <p id="question-desc" class="text-sm sm:text-base text-white/52 mt-2 leading-relaxed max-w-2xl">Descrição</p>
+            </div>
+            <div id="question-emoji" class="text-4xl sm:text-5xl select-none drop-shadow-lg">🔥</div>
+          </div>
+
+          <div class="progress-track mb-7"><div id="progress-fill" class="progress-fill" style="width:14%"></div></div>
+
+          <div id="rating-options" class="space-y-2.5"></div>
+
+          <div id="reaction-box" class="hidden mt-4 rounded-2xl border border-rose-400/10 bg-rose-400/[.045] px-4 py-3 text-xs sm:text-sm text-rose-100/80"></div>
+
+          <div class="mt-6">
+            <label class="block text-[10px] uppercase tracking-[.16em] font-bold text-white/36 mb-2">Observação opcional do auditor</label>
+            <textarea id="audit-comment" rows="3" maxlength="220" placeholder="Ex.: pontos fortes, acontecimentos suspeitos, evidências encontradas sob o edredom..." class="field w-full px-4 py-3.5 rounded-2xl text-sm resize-none"></textarea>
+            <div class="flex justify-end mt-1"><span id="comment-count" class="text-[10px] text-white/25">0/220</span></div>
+          </div>
+
+          <div class="mobile-sticky mt-5 flex gap-3 justify-between items-center">
+            <button onclick="prevQuestion()" id="btn-prev" class="px-4 sm:px-5 py-3 rounded-2xl border border-white/10 bg-white/[.035] text-white/70 font-bold text-sm hover:bg-white/[.06] transition disabled:opacity-25 disabled:cursor-not-allowed">← Voltar</button>
+            <button onclick="nextQuestion()" id="btn-next" disabled class="px-5 sm:px-6 py-3.5 rounded-2xl bg-white/10 text-white/35 font-extrabold text-sm transition disabled:cursor-not-allowed flex items-center gap-2">Escolha uma nota</button>
+          </div>
+        </article>
+
+        <aside class="glass rounded-[28px] p-5 lg:sticky lg:top-24 overflow-hidden">
+          <p class="text-[10px] uppercase tracking-[.18em] text-white/35 font-bold">Termômetro conjugal</p>
+          <h4 class="brand-font text-xl font-extrabold mt-1">Clima da sessão</h4>
+
+          <div class="flex items-end gap-5 mt-6">
+            <div class="w-5 h-44 rounded-full bg-white/5 border border-white/8 p-1 flex items-end">
+              <div id="thermo-fill" class="thermo w-full rounded-full transition-all duration-500" style="height:8%"></div>
+            </div>
+            <div class="pb-1">
+              <div id="live-score" class="brand-font text-4xl font-black">--%</div>
+              <div id="live-label" class="text-xs text-white/42 mt-1">Aguardando evidências</div>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-5 border-t border-white/7 space-y-3 text-xs">
+            <div class="flex items-center justify-between"><span class="text-white/40">Auditada</span><strong id="side-name" class="text-right max-w-[150px] truncate">Meu Amor</strong></div>
+            <div class="flex items-center justify-between"><span class="text-white/40">Modo</span><strong id="side-spice">🌶️ Picante</strong></div>
+            <div class="flex items-center justify-between"><span class="text-white/40">Respondidas</span><strong><span id="answered-count">0</span>/<span id="total-count">7</span></strong></div>
+          </div>
+
+          <div class="mt-5 rounded-2xl bg-white/[.035] border border-white/7 p-4">
+            <p id="danger-tip" class="text-xs text-white/45 leading-relaxed">Dica: sinceridade é importante. Instinto de sobrevivência também.</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- RESULTS -->
+    <section id="screen-results" class="hidden screen-in">
+      <div class="grid lg:grid-cols-[.9fr_1.1fr] gap-5 lg:gap-7 items-stretch">
+        <article class="glass glow-border rounded-[28px] sm:rounded-[34px] p-6 sm:p-8 lg:p-10 flex flex-col items-center text-center justify-center relative overflow-hidden min-h-[470px]">
+          <div class="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-rose-500/10 to-transparent pointer-events-none"></div>
+          <div id="result-badge-icon" class="text-4xl mb-4 pop">👑</div>
+          <div id="result-ring" class="result-ring" style="--score:0">
+            <div class="result-ring-inner">
+              <div>
+                <div id="final-score-percent" class="brand-font text-4xl sm:text-5xl font-black">0%</div>
+                <div class="text-[10px] uppercase tracking-[.18em] text-white/35 mt-1">índice de química</div>
+              </div>
+            </div>
+          </div>
+
+          <h2 id="final-verdict-title" class="brand-font text-2xl sm:text-3xl font-black mt-6">Resultado</h2>
+          <p id="final-verdict-desc" class="text-sm text-white/52 mt-2 max-w-md leading-relaxed">Descrição</p>
+
+          <div id="result-flirt" class="mt-5 rounded-2xl px-4 py-3 bg-rose-500/[.07] border border-rose-400/10 text-sm text-rose-100/80 max-w-md"></div>
+
+          <div class="grid grid-cols-2 gap-2 w-full max-w-md mt-6">
+            <button onclick="openReportModal()" class="rounded-2xl py-3 px-4 bg-white text-[#1a0d19] font-extrabold text-sm hover:bg-rose-50 transition">📜 Laudo</button>
+            <button onclick="shareResult()" class="rounded-2xl py-3 px-4 bg-white/[.07] border border-white/10 font-extrabold text-sm hover:bg-white/[.1] transition">📲 Compartilhar</button>
+          </div>
+          <button onclick="resetAudit()" class="mt-3 text-xs text-white/35 hover:text-white/70 transition underline underline-offset-4">Refazer auditoria</button>
+        </article>
+
+        <article class="glass rounded-[28px] sm:rounded-[34px] p-5 sm:p-7 lg:p-8">
+          <div class="flex items-end justify-between gap-4 mb-5">
+            <div>
+              <p class="text-[10px] uppercase tracking-[.18em] text-white/35 font-bold">Raio-X da relação</p>
+              <h3 class="brand-font text-2xl font-black mt-1">Onde ferveu e onde esfriou</h3>
+            </div>
+            <div class="text-2xl">📊</div>
+          </div>
+          <div id="breakdown-list" class="space-y-2.5"></div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- REPORT MODAL -->
+  <div id="report-modal" class="fixed inset-0 bg-black/75 backdrop-blur-md z-[70] hidden items-center justify-center p-3 sm:p-5" role="dialog" aria-modal="true" aria-labelledby="report-title">
+    <div class="glass rounded-[26px] sm:rounded-[32px] max-w-2xl w-full max-h-[92vh] overflow-y-auto p-4 sm:p-6">
+      <div class="flex items-center justify-between gap-4 mb-4">
+        <div>
+          <p class="text-[10px] uppercase tracking-[.18em] text-white/35 font-bold">Documento confidencial</p>
+          <h3 id="report-title" class="brand-font text-xl sm:text-2xl font-black mt-1">Laudo Oficial ISO-Amor</h3>
+        </div>
+        <button onclick="closeReportModal()" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 text-white/50 hover:text-white hover:bg-white/10 transition text-xl" aria-label="Fechar">×</button>
+      </div>
+
+      <div id="certificate-box" class="rounded-[24px] bg-[#fff8f3] text-[#2c1826] p-5 sm:p-8 border border-[#f3c9d6] shadow-2xl relative overflow-hidden">
+        <div class="absolute -top-12 -right-10 w-40 h-40 rounded-full bg-pink-200/40 blur-2xl"></div>
+        <div class="relative">
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <p class="text-[10px] uppercase tracking-[.18em] font-black text-[#ad476d]">Certificado conjugal • edição especial</p>
+              <h2 class="brand-font text-2xl sm:text-3xl font-black mt-1">ISO-Amor 9001</h2>
+            </div>
+            <div class="text-3xl">💋</div>
+          </div>
+
+          <div class="mt-7 text-center">
+            <p class="text-xs text-[#72566a]">Certificamos, sob alto risco de represália e com forte evidência afetiva, que</p>
+            <h3 id="cert-wife-name" class="brand-font text-2xl sm:text-3xl font-black mt-2">Meu Amor</h3>
+            <p class="text-sm text-[#72566a] mt-2">foi submetida(o) à mais rigorosa e totalmente questionável auditoria de química, carinho, parceria e temperatura do relacionamento.</p>
+          </div>
+
+          <div class="grid sm:grid-cols-2 gap-3 mt-6 text-sm">
+            <div class="rounded-2xl bg-white/80 border border-[#edd6df] p-4"><span class="text-xs text-[#8d6d7f]">Pontuação final</span><div id="cert-score" class="brand-font text-2xl font-black mt-1">0%</div></div>
+            <div class="rounded-2xl bg-white/80 border border-[#edd6df] p-4"><span class="text-xs text-[#8d6d7f]">Status</span><div id="cert-status" class="font-extrabold mt-1">—</div></div>
+          </div>
+
+          <div class="rounded-2xl bg-[#351527] text-white p-4 mt-3">
+            <span class="text-[10px] uppercase tracking-wider text-white/55">Determinação oficial</span>
+            <p id="cert-reward" class="font-bold mt-1 text-sm leading-relaxed">—</p>
+          </div>
+
+          <div class="mt-6 flex flex-col sm:flex-row justify-between gap-4 text-[10px] text-[#856779] border-t border-[#ead1db] pt-4">
+            <span>Emitido em <strong id="cert-date">--/--/----</strong></span>
+            <span>Validade: até a próxima DR ou pedido de comida</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid sm:grid-cols-3 gap-2 mt-4">
+        <button onclick="copyCertificate()" class="rounded-2xl py-3 px-4 bg-gradient-to-r from-rose-500 to-fuchsia-600 font-extrabold text-sm">📋 Copiar texto</button>
+        <button onclick="shareWhatsApp()" class="rounded-2xl py-3 px-4 bg-emerald-500/15 border border-emerald-400/15 text-emerald-200 font-extrabold text-sm">💬 WhatsApp</button>
+        <button onclick="window.print()" class="rounded-2xl py-3 px-4 bg-white/[.07] border border-white/10 font-extrabold text-sm">🖨️ Imprimir / PDF</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">Pronto.</div>
+
+  <footer class="relative z-10 text-center px-4 py-7 text-[11px] text-white/25 border-t border-white/5">
+    ISO-Amor 9001 • ferramenta recreativa para adultos • nenhum casamento foi oficialmente certificado por órgãos reguladores 😏
+  </footer>
+
+<script>
+  const questionSets = {
+    soft: [
+      {
+        title: "Carinho & Presença",
+        emoji: "🤗",
+        desc: "Como está a frequência de abraços, cafunés e atenção espontânea no dia a dia?",
+        weight: 1,
+        reactions: ["Carinho em estado de emergência.", "Dá para melhorar sem acionar a ONU.", "Afeto funcionando em horário comercial.", "Clima gostoso e constante.", "Nível abraço-premium desbloqueado."],
+        options: [
+          [1,"Modo economia de afeto","🌵 Seco"],[2,"Carinho aparece quando lembram","🫠 Instável"],[3,"Presença razoável na rotina","🙂 Ok"],[4,"Muito carinho e boa troca","🥰 Quente"],[5,"Cafuné ilimitado e abraço premium","💖 Máximo"]
+        ]
+      },
+      {
+        title: "Sintonia Romântica",
+        emoji: "💘",
+        desc: "O casal ainda cria momentos a dois ou o romance foi sequestrado pela rotina?",
+        weight: 1,
+        reactions: ["Romance visto pela última vez em local desconhecido.", "Precisa de um empurrãozinho.", "Ainda respira.", "Boa faísca.", "Parece começo de namoro."],
+        options: [[1,"Romance desaparecido em combate","📉 Sumido"],[2,"Acontece raramente","🕯️ Fraco"],[3,"Tem seus momentos","✨ Vivo"],[4,"Clima frequente e gostoso","💞 Forte"],[5,"Parece lua de mel recorrente","💘 Altíssimo"]]
+      },
+      {
+        title: "Beijo & Química",
+        emoji: "💋",
+        desc: "Quando rola beijo, ainda existe aquela faísca ou virou cumprimento diplomático?",
+        weight: 2,
+        reactions: ["Beijo virou protocolo de fronteira.", "Ainda há esperança labial.", "Faísca em modo moderado.", "Boa combustão.", "Perigo de curto-circuito."],
+        options: [[1,"Selinho burocrático de repartição","📎 Formal"],[2,"Beijo bom, mas raro","😶‍🌫️ Baixo"],[3,"Química equilibrada","💫 Médio"],[4,"Beijo que muda o clima","💋 Forte"],[5,"Beijo que apaga a pauta da reunião","🔥 Intenso"]]
+      },
+      {
+        title: "Parceria na Rotina",
+        emoji: "🤝",
+        desc: "Como está a divisão de responsabilidades, apoio e sensação de jogar no mesmo time?",
+        weight: 1,
+        reactions: ["Equipe em greve.", "Tem ruído operacional.", "Funciona com ajustes.", "Boa parceria.", "Dupla de elite."],
+        options: [[1,"Cada um por si e Deus pelo Wi-Fi","🆘 Crítico"],[2,"Ajuda existe, mas sob protesto","⚠️ Tenso"],[3,"Divisão aceitável","🤝 Ok"],[4,"Boa parceria de verdade","💪 Forte"],[5,"Time sincronizado nível Fórmula 1","🏆 Elite"]]
+      },
+      {
+        title: "Humor & Leveza",
+        emoji: "😂",
+        desc: "Vocês ainda riem juntos ou qualquer piada pode abrir uma sindicância?",
+        weight: 1,
+        reactions: ["Rir virou atividade de risco.", "Clima exige perícia.", "Dá para brincar.", "Leveza boa.", "Casal em modo stand-up."],
+        options: [[1,"Silêncio que assusta até o cachorro","💀 Perigo"],[2,"Piada precisa de autorização prévia","🧯 Cuidado"],[3,"Rimos quando o dia ajuda","🙂 Normal"],[4,"Muita zoeira e cumplicidade","😄 Ótimo"],[5,"Uma dupla de comédia particular","🤣 Caos bom"]]
+      },
+      {
+        title: "Tempo de Qualidade",
+        emoji: "🥂",
+        desc: "Existe espaço real para ficar junto sem celular, boleto ou alguém perguntar onde está a chave?",
+        weight: 1,
+        reactions: ["Agenda afetiva zerada.", "Pouco tempo real.", "Dá para manter.", "Boa prioridade.", "Agenda do casal protegida por lei."],
+        options: [[1,"Só nos vemos de relance","🏃 Ausente"],[2,"Tempo juntos é raro","⌛ Baixo"],[3,"Temos momentos razoáveis","🕰️ Médio"],[4,"Priorizamos ficar juntos","🥂 Bom"],[5,"Tempo a dois é compromisso sagrado","🌙 Excelente"]]
+      },
+      {
+        title: "Clima do Edredom",
+        emoji: "🔥",
+        desc: "Sem entrar em detalhes: como está a conexão íntima, a vontade e a sintonia do casal?",
+        weight: 2,
+        reactions: ["Edredom operando como simples cobertor.", "Temperatura baixa, mas recuperável.", "Motor ligado em marcha lenta.", "Clima muito bom.", "Sensor de incêndio pediu transferência."],
+        options: [[1,"Modo inverno permanente","❄️ Gelado"],[2,"Brasinha tímida","🧊 Frio"],[3,"Temperatura estável","✨ Morno"],[4,"Clima quente e boa sintonia","❤️ Quente"],[5,"Alta combustão emocional","🔥 Pegando fogo"]]
+      }
+    ],
+    hot: [],
+    extra: []
+  };
+
+  // Base "picante" e "sem freio" reaproveitam a estrutura, mas mudam o tom textual.
+  questionSets.hot = JSON.parse(JSON.stringify(questionSets.soft));
+  questionSets.extra = JSON.parse(JSON.stringify(questionSets.soft));
+
+  const toneOverrides = {
+    hot: {
+      0: ["Cota de carinho vencida.","Ainda dá para negociar uns cafunés.","Afeto em modo econômico.","Boa distribuição de mimos.","Auditoria detectou overdose de carinho."],
+      1: ["Romance foi visto entrando no elevador e nunca mais voltou.","Tem faísca, falta combustível.","Ainda esquenta quando quer.","Clima de date bem servido.","Isso já está com cheiro de lua de mel."],
+      2: ["Beijo com energia de boleto pago.","Tem potencial, falta insistência.","Química respeitável.","Beijo que bagunça o raciocínio.","A comissão recomenda pausa imediata para testes adicionais."],
+      3: ["Parceria terceirizada para o caos.","Algumas cláusulas precisam de revisão.","Contrato funcional.","Time entrosado.","Casal em modo sociedade anônima do amor."],
+      4: ["Qualquer piada pode virar prova no tribunal.","Humor com colete à prova de DR.","Zona neutra.","Zoação saudável.","Riem até quando deveriam estar brigando."],
+      5: ["O casal só se encontra no carregador do celular.","Agenda romântica quase clandestina.","Tempo a dois existe e respira.","Boa prioridade afetiva.","Modo avião ativado: só existe o casal."],
+      6: ["O edredom pediu aposentadoria por falta de emoção.","Brasinha procurando fósforo.","Motor aquecendo.","Temperatura com risco de subir rápido.","A perícia recomenda manter um extintor por perto."]
+    },
+    extra: {
+      0: ["Carinho em falta e o RH do casamento já abriu chamado.","O cafuné está em contingenciamento.","Tem afeto, mas sem hora extra.","Pacote premium quase completo.","Mimo em quantidade industrial."],
+      1: ["Romance foi morar com outra família.","Tem tensão, mas ainda não é daquela boa.","Faísca autorizada.","Clima com segundas intenções.","A lua de mel aparentemente se recusou a acabar."],
+      2: ["Beijo com burocracia de cartório.","O potencial existe e está sendo desperdiçado.","Química com documentação em dia.","Beijo que derruba a linha de raciocínio.","Teste inconclusivo: será necessário repetir imediatamente."],
+      3: ["Cada um carregando sua própria cruz e a senha do Wi-Fi.","Parceria sob auditoria.","Operação estável.","Boa engrenagem doméstica.","Casal sincronizado até para reclamar do mesmo boleto."],
+      4: ["Piada aqui precisa de advogado.","Sorriso liberado com cautela.","Humor em temperatura ambiente.","Zoação com licença poética.","Se rir mais, vira podcast."],
+      5: ["Tempo a dois só aparece em flashback.","Encontro marcado entre duas notificações.","Existe vida além do celular.","Bom nível de conexão offline.","Celular abandonado, portas fechadas e assunto encerrado."],
+      6: ["Edredom com função exclusivamente térmica.","Tem brasa, falta vento.","Sistema íntimo operando sem incidentes.","Clima perigosamente convidativo.","O comitê encerrou a auditoria por conflito de interesses."],
+    }
+  };
+
+  const optionToneText = {
+    hot: {
+      0: ["Carinho em regime de racionamento","Mimos aparecem sob convocação","Afeto funcional, sem extravagância","Boa dose de carinho espontâneo","Cafuné premium sem limite de franquia"],
+      1: ["Romance foi terceirizado para a Netflix","Date acontece em ano bissexto","Tem faísca quando a rotina deixa","Boa frequência de clima a dois","Lua de mel aparentemente vitalícia"],
+      2: ["Selinho protocolar e segue o jogo","Beijo bom, porém subutilizado","Química em nível respeitável","Beijo que atrapalha pensamentos sérios","Beijo que exige recalcular a rota"],
+      3: ["Cada um defendendo seu próprio CPF","Ajuda com pequena taxa de reclamação","Parceria funcional","Time bem entrosado","Dupla imbatível no caos doméstico"],
+      4: ["Piada pode gerar processo interno","Humor sob supervisão","Rimos quando é seguro","Muita cumplicidade e zoeira","Comédia romântica sem roteirista"],
+      5: ["Só nos encontramos no grupo da família","Tempo a dois aparece raramente","Temos bons momentos","Priorizamos ficar juntos","Modo avião: resto do mundo que espere"],
+      6: ["Edredom 100% cobertor","Brasinha esperando lenha","Clima estável, sem boletim de incêndio","Temperatura alta e ótima sintonia","Alta combustão — preservar distância do detector de fumaça"]
+    },
+    extra: {
+      0: ["Afeto em recuperação judicial","Carinho liberado por lote","Mimos em horário comercial","Pacote premium ativo","Overdose afetiva comprovada"],
+      1: ["Romance sumiu sem deixar endereço","Clima em manutenção preventiva","Faísca operacional","Segundas intenções recorrentes","Lua de mel se recusou a bater ponto"],
+      2: ["Beijo com firma reconhecida em cartório","Química subaproveitada","Faísca tecnicamente aprovada","Beijo que bagunça a memória RAM","Beijo que encerra qualquer reunião imediatamente"],
+      3: ["Sociedade conjugal em intervenção","Contrato exige revisão","Operação estável","Boa parceria de guerra","Casal modo forças especiais"],
+      4: ["Humor sujeito a recurso","Piada com capacete","Zona neutra segura","Zoação autorizada","Stand-up privado sem censura"],
+      5: ["Agenda amorosa em paradeiro desconhecido","Encontro clandestino entre notificações","Vida offline razoável","Tempo a dois protegido","Porta fechada, celular longe e boa sorte"],
+      6: ["Edredom em modo patrimônio histórico","Brasa aguardando ventilação","Sistema íntimo estável","Clima que dispensa aquecedor","Risco alto de perda de foco e atraso no dia seguinte"]
+    }
+  };
+
+  let questions = questionSets.hot;
+  let currentQuestionIndex = 0;
+  let auditResponses = [];
+  let auditData = { wifeName: "Meu Amor", dangerLevel: 1, spiceLevel: "hot" };
+  let finalPercentage = 0;
+
+  const $ = (id) => document.getElementById(id);
+
+  function escapeHTML(value = "") {
+    return String(value).replace(/[&<>'"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
+  }
+
+  function spiceLabel(level) {
+    if (level === 'soft') return '💗 Suave';
+    if (level === 'extra') return '🔥 Sem freio';
+    return '🌶️ Picante';
+  }
+
+  function prepareQuestions(level) {
+    questions = JSON.parse(JSON.stringify(questionSets[level] || questionSets.hot));
+    if (level !== 'soft') {
+      questions.forEach((q, qi) => {
+        q.reactions = toneOverrides[level][qi];
+        q.options = q.options.map((opt, oi) => [opt[0], optionToneText[level][qi][oi], opt[2]]);
+      });
+    }
+  }
+
+  function startAudit() {
+    const name = $('wife-name').value.trim().slice(0, 40) || 'Meu Amor';
+    auditData = {
+      wifeName: name,
+      dangerLevel: Number($('danger-level').value),
+      spiceLevel: $('spice-level').value
+    };
+
+    prepareQuestions(auditData.spiceLevel);
+    currentQuestionIndex = 0;
+    auditResponses = questions.map(() => ({ score: null, comment: '', text: '' }));
+
+    $('audit-target-name').textContent = name;
+    $('side-name').textContent = name;
+    $('side-spice').textContent = spiceLabel(auditData.spiceLevel);
+    $('total-count').textContent = questions.length;
+    $('header-status').classList.remove('hidden');
+    $('header-status').classList.add('flex');
+
+    const tips = {
+      1: 'Dica: sinceridade é importante. Instinto de sobrevivência também.',
+      2: 'Dica: responda com carinho. Algumas respostas podem ser usadas na próxima DR.',
+      3: 'Dica: situação delicada. Considere flores, comida e boa argumentação.'
+    };
+    $('danger-tip').textContent = tips[auditData.dangerLevel];
+
+    switchScreen('screen-login', 'screen-quiz');
+    loadQuestion();
+  }
+
+  function switchScreen(hideId, showId) {
+    $(hideId).classList.add('hidden');
+    const show = $(showId);
+    show.classList.remove('hidden');
+    show.classList.remove('screen-in');
+    void show.offsetWidth;
+    show.classList.add('screen-in');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function loadQuestion() {
+    const q = questions[currentQuestionIndex];
+    const resp = auditResponses[currentQuestionIndex];
+
+    $('question-counter').textContent = `Questão ${currentQuestionIndex + 1} de ${questions.length}`;
+    $('question-title').textContent = q.title;
+    $('question-desc').textContent = q.desc;
+    $('question-emoji').textContent = q.emoji;
+    $('question-weight').classList.toggle('hidden', q.weight <= 1);
+    $('progress-fill').style.width = `${((currentQuestionIndex + 1) / questions.length) * 100}%`;
+    $('audit-comment').value = resp.comment || '';
+    updateCommentCount();
+
+    const container = $('rating-options');
+    container.innerHTML = '';
+
+    [...q.options].reverse().forEach(opt => {
+      const [score, text, badge] = opt;
+      const selected = resp.score === score;
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = `rating-card ${selected ? 'selected' : ''} w-full rounded-2xl p-3.5 sm:p-4 text-left flex items-center justify-between gap-3`;
+      btn.setAttribute('aria-pressed', selected ? 'true' : 'false');
+      btn.innerHTML = `
+        <div class="flex items-center gap-3 min-w-0">
+          <span class="score-pill">${score}</span>
+          <div class="min-w-0">
+            <div class="text-sm font-bold text-white/90 leading-snug">${escapeHTML(text)}</div>
+            <div class="text-[11px] text-white/35 mt-1">${score === 5 ? 'Quase perigoso de tão bom' : score === 1 ? 'Acione o protocolo de recuperação' : 'Registro aceito pelo comitê conjugal'}</div>
+          </div>
+        </div>
+        <span class="shrink-0 text-[10px] sm:text-xs font-extrabold px-2.5 py-1.5 rounded-full ${selected ? 'bg-rose-500/20 text-rose-100' : 'bg-white/5 text-white/45'}">${escapeHTML(badge)}</span>`;
+      btn.onclick = () => selectOption(score, text, btn);
+      container.appendChild(btn);
+    });
+
+    if (resp.score) {
+      showReaction(resp.score);
+    } else {
+      $('reaction-box').classList.add('hidden');
+    }
+
+    $('btn-prev').disabled = currentQuestionIndex === 0;
+    updateNextButton();
+    updateLiveStats();
+  }
+
+  function selectOption(score, text, sourceBtn) {
+    const resp = auditResponses[currentQuestionIndex];
+    resp.score = score;
+    resp.text = text;
+    if (navigator.vibrate) navigator.vibrate(18);
+    createSparks(sourceBtn);
+    loadQuestion();
+  }
+
+  function showReaction(score) {
+    const q = questions[currentQuestionIndex];
+    const box = $('reaction-box');
+    const idx = Math.max(0, Math.min(4, score - 1));
+    box.textContent = `💬 ${q.reactions[idx]}`;
+    box.classList.remove('hidden');
+    box.classList.remove('pop');
+    void box.offsetWidth;
+    box.classList.add('pop');
+  }
+
+  function updateNextButton() {
+    const btn = $('btn-next');
+    const selected = !!auditResponses[currentQuestionIndex].score;
+    btn.disabled = !selected;
+
+    if (!selected) {
+      btn.className = 'px-5 sm:px-6 py-3.5 rounded-2xl bg-white/10 text-white/35 font-extrabold text-sm transition disabled:cursor-not-allowed flex items-center gap-2';
+      btn.innerHTML = 'Escolha uma nota';
+      return;
+    }
+
+    btn.className = 'cta px-5 sm:px-6 py-3.5 rounded-2xl text-white font-extrabold text-sm flex items-center gap-2';
+    btn.innerHTML = currentQuestionIndex === questions.length - 1 ? 'Ver diagnóstico <span>🔥</span>' : 'Próxima <span>→</span>';
+  }
+
+  function updateLiveStats() {
+    const answered = auditResponses.filter(r => r.score).length;
+    $('answered-count').textContent = answered;
+    if (!answered) {
+      $('live-score').textContent = '--%';
+      $('live-label').textContent = 'Aguardando evidências';
+      $('thermo-fill').style.height = '8%';
+      return;
+    }
+
+    let points = 0, max = 0;
+    auditResponses.forEach((r, i) => {
+      if (!r.score) return;
+      const w = questions[i].weight || 1;
+      points += r.score * w;
+      max += 5 * w;
+    });
+    const pct = Math.round((points / max) * 100);
+    $('live-score').textContent = `${pct}%`;
+    $('thermo-fill').style.height = `${Math.max(8, pct)}%`;
+    $('live-label').textContent = pct >= 85 ? '🔥 Química perigosa' : pct >= 70 ? '💗 Clima muito bom' : pct >= 50 ? '✨ Operação estável' : '🧊 Requer aquecimento';
+  }
+
+  function nextQuestion() {
+    if (!auditResponses[currentQuestionIndex].score) return;
+    saveComment();
+    if (currentQuestionIndex < questions.length - 1) {
+      currentQuestionIndex++;
+      loadQuestion();
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    } else {
+      finishAudit();
+    }
+  }
+
+  function prevQuestion() {
+    saveComment();
+    if (currentQuestionIndex > 0) {
+      currentQuestionIndex--;
+      loadQuestion();
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    }
+  }
+
+  function saveComment() {
+    auditResponses[currentQuestionIndex].comment = $('audit-comment').value.trim().slice(0, 220);
+  }
+
+  function calculateWeightedPercentage() {
+    let totalWeightedScore = 0;
+    let totalMaxWeighted = 0;
+    auditResponses.forEach((r, i) => {
+      const w = questions[i].weight || 1;
+      totalWeightedScore += (r.score || 0) * w;
+      totalMaxWeighted += 5 * w;
+    });
+    return Math.round((totalWeightedScore / totalMaxWeighted) * 100);
+  }
+
+  function finishAudit() {
+    finalPercentage = calculateWeightedPercentage();
+    switchScreen('screen-quiz', 'screen-results');
+
+    $('final-score-percent').textContent = `${finalPercentage}%`;
+    $('result-ring').style.setProperty('--score', finalPercentage);
+
+    let icon, title, desc, flirt;
+    if (finalPercentage >= 90) {
+      icon = '🔥';
+      title = 'Alerta: química acima do limite permitido';
+      desc = `${auditData.wifeName} passou pela auditoria com excelência e deixou o comitê sem argumentos técnicos.`;
+      flirt = auditData.spiceLevel === 'soft' ? '💗 Recomendação: comemorem com um encontro a dois.' : '😏 Recomendação: encerre o expediente cedo e não faça perguntas desnecessárias.';
+    } else if (finalPercentage >= 75) {
+      icon = '💋';
+      title = 'Selo Ouro — relação quente e funcional';
+      desc = 'Há cumplicidade, afeto e boa faísca. Pequenos ajustes mantêm a máquina conjugal rodando lisa.';
+      flirt = auditData.spiceLevel === 'soft' ? '🥂 Receita sugerida: jantar, conversa boa e celular longe.' : '🌶️ Receita sugerida: jantar, porta fechada e zero notificações.';
+    } else if (finalPercentage >= 55) {
+      icon = '✨';
+      title = 'Operação estável — mas dá para esquentar';
+      desc = 'A base está funcionando, porém alguns setores pedem mais atenção, tempo de qualidade e iniciativa.';
+      flirt = '💡 O sistema recomenda menos piloto automático e mais intenção.';
+    } else if (finalPercentage >= 35) {
+      icon = '🧯';
+      title = 'Manutenção preventiva urgente';
+      desc = 'A relação não explodiu, mas há sinais claros de baixa temperatura e ruído operacional.';
+      flirt = '🛠️ Procedimento indicado: conversa honesta, carinho e ações concretas. Sem PowerPoint.';
+    } else {
+      icon = '🚨';
+      title = 'Protocolo de recuperação ativado';
+      desc = 'O painel detectou carência severa de conexão, leveza e presença. É hora de tirar a relação do modo automático.';
+      flirt = '⚠️ Flores sozinhas não resolvem. Escuta, presença e mudança prática ajudam mais.';
+    }
+
+    $('result-badge-icon').textContent = icon;
+    $('final-verdict-title').textContent = title;
+    $('final-verdict-desc').textContent = desc;
+    $('result-flirt').textContent = flirt;
+
+    renderBreakdown();
+    setTimeout(() => burstConfetti(), 250);
+  }
+
+  function renderBreakdown() {
+    const list = $('breakdown-list');
+    list.innerHTML = '';
+
+    questions.forEach((q, i) => {
+      const r = auditResponses[i];
+      const pct = (r.score / 5) * 100;
+      const item = document.createElement('div');
+      item.className = 'rounded-2xl border border-white/7 bg-white/[.035] p-3.5 sm:p-4';
+      item.innerHTML = `
+        <div class="flex items-start justify-between gap-3">
+          <div class="flex items-start gap-3 min-w-0">
+            <div class="text-xl">${q.emoji}</div>
+            <div class="min-w-0">
+              <div class="font-extrabold text-sm leading-snug">${escapeHTML(q.title)} ${q.weight > 1 ? '<span class="text-[9px] ml-1 px-1.5 py-0.5 rounded bg-rose-500/15 text-rose-200">peso 2x</span>' : ''}</div>
+              <div class="text-xs text-white/37 mt-1 leading-relaxed">${escapeHTML(r.text)}${r.comment ? ` • “${escapeHTML(r.comment)}”` : ''}</div>
+            </div>
+          </div>
+          <div class="brand-font text-xl font-black text-rose-300">${r.score}<span class="text-[10px] text-white/25">/5</span></div>
+        </div>
+        <div class="mt-3 h-1.5 rounded-full bg-white/5 overflow-hidden"><div class="h-full rounded-full bg-gradient-to-r from-rose-400 to-fuchsia-500" style="width:${pct}%"></div></div>`;
+      list.appendChild(item);
+    });
+  }
+
+  function openReportModal() {
+    const status = getStatusText(finalPercentage);
+    $('cert-wife-name').textContent = auditData.wifeName;
+    $('cert-score').textContent = `${finalPercentage}%`;
+    $('cert-status').textContent = status;
+    $('cert-reward').textContent = getRewardText(finalPercentage);
+    $('cert-date').textContent = new Date().toLocaleDateString('pt-BR');
+    $('report-modal').classList.remove('hidden');
+    $('report-modal').classList.add('flex');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeReportModal() {
+    $('report-modal').classList.add('hidden');
+    $('report-modal').classList.remove('flex');
+    document.body.style.overflow = '';
+  }
+
+  function getStatusText(p) {
+    if (p >= 90) return '🔥 Combustão controlada';
+    if (p >= 75) return '💗 Química em alta';
+    if (p >= 55) return '✨ Estável com potencial';
+    if (p >= 35) return '🧯 Em manutenção';
+    return '🚨 Recuperação necessária';
+  }
+
+  function getRewardText(p) {
+    if (p >= 90) return 'Determina-se a interrupção imediata de tarefas chatas para celebração do desempenho excepcional.';
+    if (p >= 75) return 'Concedido direito a um encontro a dois com comida boa, celular longe e clima favorável.';
+    if (p >= 55) return 'Recomenda-se reforço de carinho, presença e um programa a dois sem interferência de boletos.';
+    if (p >= 35) return 'Plano de ação: conversa, escuta, divisão justa da rotina e recuperação programada da faísca.';
+    return 'Suspender ironias por 24h, abrir diálogo e iniciar plano sério de reconexão conjugal.';
+  }
+
+  function buildShareText() {
+    return `🔥 *LAUDO ISO-AMOR 9001*\n\nAuditada(o): *${auditData.wifeName}*\nÍndice de química: *${finalPercentage}%*\nStatus: ${getStatusText(finalPercentage)}\n\n${getRewardText(finalPercentage)}\n\n_Auditoria 100% recreativa, emitida em ${new Date().toLocaleDateString('pt-BR')}._ 😏`;
+  }
+
+  async function copyCertificate() {
+    const text = buildShareText();
+    try {
+      await navigator.clipboard.writeText(text);
+      showToast('Laudo copiado. Agora é com sua coragem. 😏');
+    } catch {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      ta.remove();
+      showToast('Laudo copiado.');
+    }
+  }
+
+  function shareWhatsApp() {
+    window.open(`https://wa.me/?text=${encodeURIComponent(buildShareText())}`, '_blank', 'noopener,noreferrer');
+  }
+
+  async function shareResult() {
+    const text = buildShareText();
+    if (navigator.share) {
+      try {
+        await navigator.share({ title: 'ISO-Amor 9001', text });
+        return;
+      } catch (e) {
+        if (e.name === 'AbortError') return;
+      }
+    }
+    await copyCertificate();
+  }
+
+  function resetAudit() {
+    currentQuestionIndex = 0;
+    auditResponses = [];
+    finalPercentage = 0;
+    $('header-status').classList.add('hidden');
+    $('header-status').classList.remove('flex');
+    switchScreen('screen-results', 'screen-login');
+  }
+
+  function updateCommentCount() {
+    $('comment-count').textContent = `${$('audit-comment').value.length}/220`;
+  }
+
+  function showToast(message) {
+    const toast = $('toast');
+    toast.textContent = message;
+    toast.classList.add('show');
+    clearTimeout(showToast.timer);
+    showToast.timer = setTimeout(() => toast.classList.remove('show'), 2600);
+  }
+
+  function createSparks(btn) {
+    if (!btn) return;
+    const r = btn.getBoundingClientRect();
+    const cx = r.left + r.width - 34;
+    const cy = r.top + r.height / 2;
+    for (let i = 0; i < 8; i++) {
+      const s = document.createElement('span');
+      s.className = 'spark';
+      s.style.left = `${cx}px`;
+      s.style.top = `${cy}px`;
+      s.style.background = i % 2 ? '#fb7185' : '#d946ef';
+      s.style.setProperty('--x', `${(Math.random() - .5) * 90}px`);
+      s.style.setProperty('--y', `${(Math.random() - .5) * 80}px`);
+      document.body.appendChild(s);
+      setTimeout(() => s.remove(), 800);
+    }
+  }
+
+  function burstConfetti() {
+    const x = window.innerWidth / 2;
+    const y = Math.min(window.innerHeight * .35, 280);
+    for (let i = 0; i < 24; i++) {
+      const s = document.createElement('span');
+      s.className = 'spark';
+      s.style.left = `${x}px`;
+      s.style.top = `${y}px`;
+      s.style.width = `${5 + Math.random()*6}px`;
+      s.style.height = `${5 + Math.random()*6}px`;
+      s.style.borderRadius = Math.random() > .5 ? '50%' : '2px';
+      s.style.background = ['#fb7185','#ec4899','#d946ef','#f59e0b','#fff'][i % 5];
+      s.style.setProperty('--x', `${(Math.random() - .5) * Math.min(520, window.innerWidth - 30)}px`);
+      s.style.setProperty('--y', `${60 + Math.random() * 280}px`);
+      document.body.appendChild(s);
+      setTimeout(() => s.remove(), 850);
+    }
+  }
+
+  $('audit-comment').addEventListener('input', updateCommentCount);
+  $('report-modal').addEventListener('click', (e) => { if (e.target === $('report-modal')) closeReportModal(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeReportModal(); });
+</script>
+</body>
+</html>
